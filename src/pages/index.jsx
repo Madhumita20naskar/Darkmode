@@ -1,12 +1,15 @@
 import Darkmode from "@/components/Darkmode";
+
 import Nav from "@/components/Nav";
 
 const index = () => {
   return (
     <>
-      <Darkmode />
+      <div className="">
+        <Nav />
 
-      {/* <Nav /> */}
+        <Darkmode />
+      </div>
     </>
   );
 };
