@@ -1,40 +1,65 @@
+import React from "react";
 import {
   Navbar,
   NavbarBrand,
+  NavbarMenuToggle,
+  NavbarMenuItem,
+  NavbarMenu,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
   Link,
   Button,
 } from "@nextui-org/react";
 import Dark from "./Dark";
+import { color } from "framer-motion";
 
 const Nav = () => {
-  return (
-    <>
-      <Navbar className="flex justify-between">
-        <img className="h-10 w-10 inline" src="tailwind-logo.png" alt="logo" />
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-        <NavbarContent className="hidden sm:flex gap-4 space-x-14  ">
+  const menuItems = ["Product", "Features", "Marketplace", "Company"];
+  return (
+    <div>
+      <Navbar
+        isBordered
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
+      >
+        <NavbarContent className="sm:hidden" justify="start">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          />
+        </NavbarContent>
+
+        <NavbarContent className="sm:hidden pr-3" justify="center">
+          <NavbarBrand>
+            <img
+              className="h-10 w-10 inline"
+              src="tailwind-logo.png"
+              alt="logo"
+            />
+          </NavbarBrand>
+        </NavbarContent>
+
+        <NavbarContent className="hidden sm:flex gap-4 me-60" justify="center">
+          <NavbarBrand>
+            <img
+              className="h-10 w-10 inline"
+              src="tailwind-logo.png"
+              alt="logo"
+            />
+          </NavbarBrand>
           <NavbarItem>
-            <Link className="font-semibold text-xl" color="foreground" href="#">
+            <Link className="font-semibold text-xl" color="foreground" href="/">
               Product
             </Link>
           </NavbarItem>
-          <NavbarItem isActive>
-            <Link
-              className="font-semibold text-xl"
-              color="foreground"
-              href="#"
-              aria-current="page"
-            >
+          <NavbarItem>
+            <Link className="font-semibold text-xl" href="/" color="foreground">
               Features
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link className="font-semibold text-xl" color="foreground" href="#">
+            <Link className="font-semibold text-xl" color="foreground" href="/">
               Marketplace
             </Link>
           </NavbarItem>
@@ -49,21 +74,44 @@ const Nav = () => {
             </Link>
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent className="ms-96">
-          <NavbarItem className="   lg:flex">
+
+        <NavbarContent justify="end">
+          <NavbarItem className="flex ">
             <Dark />
           </NavbarItem>
-          <NavbarItem>
+          <NavbarItem className="hidden  lg:flex">
             <Button
-              className="w-24 h-10 text-white  bg-blue-400 text-lg "
+              className=" text-white  bg-blue-400 text-lg"
               href="#"
+              variant="flat"
             >
-              Sign in
+              Sign Up
             </Button>
           </NavbarItem>
         </NavbarContent>
+
+        <NavbarMenu>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                className="w-full"
+                color={
+                  index === 2
+                    ? "warning"
+                    : index === menuItems.length - 1
+                    ? "danger"
+                    : "foreground"
+                }
+                href="#"
+                size="lg"
+              >
+                {item}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
       </Navbar>
-    </>
+    </div>
   );
 };
 
