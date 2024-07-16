@@ -4,15 +4,12 @@ import { Facebook } from "lucide-react";
 import { Twitter } from "lucide-react";
 import { Github } from "lucide-react";
 
-import Nav from "./Nav";
-// import Nav from "./Nav";
 const Darkmode = () => {
   return (
     <>
-      <Nav />
-      <div className="sm:h-screen md:h-screen lg:h-screen bg-purple-50  dark:bg-black  m-3  ">
-        <div className=" grid grid-cols-2 sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-2 place-items-center  px-7 gap-44 w-full  ">
-          <div className="pt-20">
+      <div className="sm:h-screen md:h-screen lg:h-screen bg-purple-50  dark:bg-black   w-full ">
+        <div className=" grid  sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-2 place-items-center  px-7   ">
+          <div className="">
             <div className="w-72 h-8 bg-blue-950 flex items-center rounded-3xl gap-5 p-2">
               <button className="w-28 h-7 text-white bg-indigo-700 items-center  rounded-3xl">
                 We're hiring
